@@ -27,5 +27,11 @@ RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2
 # Set default shell to bash
 SHELL ["/bin/bash", "-c"]
 
-# Verify installs
-RUN terraform -version && aws --version
+# Set a better shell prompt
+RUN echo 'export PS1="\w \\$ "' >> /root/.bashrc
+
+# Create a working directory
+WORKDIR /workspace
+
+# Default to bash on container run
+CMD [ "bash" ]
